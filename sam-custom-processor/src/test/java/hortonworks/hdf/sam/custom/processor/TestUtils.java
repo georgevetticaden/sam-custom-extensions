@@ -36,4 +36,20 @@ public class TestUtils {
 			System.out.println(value);
 		}
 	}
+	
+	@Test
+	public void tokenize() {
+		String multipleSQL="select certified, wage_plan from drivers where driverid=${driverId}; select hours_logged, miles_logged from timesheet where driverid= ${driverId} and week=${week}";
+		String[] sqls = multipleSQL.split(";");
+		System.out.println("Size is: " + sqls.length);
+		System.out.println(sqls[0].trim());
+		System.out.println(sqls[1].trim());
+		
+		String sql2 = "select certified, wage_plan from drivers where driverid=${driverId}";
+		String[] sqls_2 = sql2.split(";");
+		System.out.println("Size is: " + sqls_2.length);
+		System.out.println(sqls_2[0]);
+		
+		
+	}
 }

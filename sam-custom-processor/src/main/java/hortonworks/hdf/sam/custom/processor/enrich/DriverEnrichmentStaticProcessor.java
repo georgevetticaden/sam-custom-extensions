@@ -62,7 +62,7 @@ public class DriverEnrichmentStaticProcessor implements CustomProcessorRuntime {
         StreamlineEvent enrichedEvent = builder.dataSourceId(event.getDataSourceId()).build();
         LOG.info("Enriched StreamLine Event is: " + enrichedEvent );
         List<StreamlineEvent> newEvents= Collections.<StreamlineEvent>singletonList(enrichedEvent);
-        results.add(new Result("stream1", newEvents));
+        results.add(new Result("enrich_stream", newEvents));
         return results;
 	}
 
