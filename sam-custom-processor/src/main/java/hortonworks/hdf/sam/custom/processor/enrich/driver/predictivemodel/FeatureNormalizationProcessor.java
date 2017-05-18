@@ -1,4 +1,4 @@
-package hortonworks.hdf.sam.custom.processor.enrich;
+package hortonworks.hdf.sam.custom.processor.enrich.driver.predictivemodel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +17,13 @@ import com.hortonworks.streamline.streams.exception.ConfigException;
 import com.hortonworks.streamline.streams.exception.ProcessingException;
 import com.hortonworks.streamline.streams.runtime.CustomProcessorRuntime;
 
+/**
+ * Normalizes features that will be fed into the Predictive model. Normalization includes:
+ * 	1. Feature scaling applied to hours and miles to improve algorithm performance
+ *  2. Normalize the features of the Drivers Wage Plan and Certification to binary values
+ * @author gvetticaden
+ *
+ */
 public class FeatureNormalizationProcessor implements CustomProcessorRuntime {
 
 

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "eventTime",
+    "type": "STRING",
+    "optional": false
+  },
+  {
+    "name": "eventSource",
+    "type": "STRING",
+    "optional": false
+  },
+  {
+    "name": "truckId",
+    "type": "INTEGER",
+    "optional": false
+  },
+  {
+    "name": "driverId",
+    "type": "INTEGER",
+    "optional": false
+  },
+  {
+    "name": "driverName",
+    "type": "STRING",
+    "optional": false
+  },
+  {
+    "name": "routeId",
+    "type": "INTEGER",
+    "optional": false
+  },
+  {
+    "name": "route",
+    "type": "STRING",
+    "optional": false
+  },
+  {
+    "name": "eventType",
+    "type": "STRING",
+    "optional": false
+  },
+  {
+    "name": "latitude",
+    "type": "DOUBLE",
+    "optional": false
+  },
+  {
+    "name": "longitude",
+    "type": "DOUBLE",
+    "optional": false
+  },
+  {
+    "name": "correlationId",
+    "type": "LONG",
+    "optional": false
+  },
+  {
+    "name": "geoAddress",
+    "type": "STRING",
+    "optional": false
+  },
+  {
+    "name": "speed",
+    "type": "INTEGER",
+    "optional": false
+  },
+  {
+    "name": "splitJoinValue",
+    "type": "DOUBLE",
+    "optional": false
+  },
+  {
+    "name": "driverCertification",
+    "type": "STRING",
+    "optional": false
+  },
+  {
+    "name": "driverWagePlan",
+    "type": "STRING",
+    "optional": false
+  }
+]

@@ -1,4 +1,4 @@
-package hortonworks.hdf.sam.custom.processor.enrich;
+package hortonworks.hdf.sam.custom.processor.enrich.driver;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +18,11 @@ import com.hortonworks.streamline.streams.exception.ConfigException;
 import com.hortonworks.streamline.streams.exception.ProcessingException;
 import com.hortonworks.streamline.streams.runtime.CustomProcessorRuntime;
 
+/**
+ * A mocked out static enrichment processor for Drivers for Testing
+ * @author gvetticaden
+ *
+ */
 public class DriverEnrichmentStaticProcessor implements CustomProcessorRuntime {
 
 	protected static final Logger LOG = LoggerFactory.getLogger(DriverEnrichmentStaticProcessor.class);

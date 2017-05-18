@@ -1,4 +1,4 @@
-package hortonworks.hdf.sam.custom.processor.enrich;
+package hortonworks.hdf.sam.custom.processor.enrich.weather;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +17,12 @@ import com.hortonworks.streamline.streams.exception.ConfigException;
 import com.hortonworks.streamline.streams.exception.ProcessingException;
 import com.hortonworks.streamline.streams.runtime.CustomProcessorRuntime;
 
+/**
+ * Enriches the event with fabricated weather conditions (fog, rain and wind)
+ * These conditions are then normalized into binary values based on the intensity of the weather codition
+ * @author gvetticaden
+ *
+ */
 public class WeatherEnrichmentProcessor implements CustomProcessorRuntime {
 
 
