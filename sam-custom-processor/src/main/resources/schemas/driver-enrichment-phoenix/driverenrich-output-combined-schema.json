@@ -72,57 +72,21 @@
   {
     "name": "driverCertification",
     "type": "STRING",
-    "optional": false
+    "optional": true
   },
   {
     "name": "driverWagePlan",
     "type": "STRING",
-    "optional": false
+    "optional": true
   },
   {
     "name": "driverFatigueByHours",
     "type": "STRING",
-    "optional": false
+    "optional": true
   },
   {
     "name": "driverFatigueByMiles",
     "type": "STRING",
-    "optional": false
-  },  
-  {
-    "name": "Model_Feature_FoggyWeather",
-    "type": "DOUBLE",
-    "optional": false
-  },
-  {
-    "name": "Model_Feature_RainyWeather",
-    "type": "DOUBLE",
-    "optional": false
-  },
-  {
-    "name": "Model_Feature_WindyWeather",
-    "type": "DOUBLE",
-    "optional": false
-  },
-  {
-    "name": "Model_Feature_Certification",
-    "type": "INTEGER",
-    "optional": false
-  },
-  {
-    "name": "Model_Feature_WagePlan",
-    "type": "INTEGER",
-    "optional": false
-  },
-  {
-    "name": "Model_Feature_FatigueByHours",
-    "type": "DOUBLE",
-    "optional": false
-  },
-  {
-    "name": "Model_Feature_FatigueByMiles",
-    "type": "DOUBLE",
-    "optional": false
-  }
-
+    "optional": true
+  }  
 ]

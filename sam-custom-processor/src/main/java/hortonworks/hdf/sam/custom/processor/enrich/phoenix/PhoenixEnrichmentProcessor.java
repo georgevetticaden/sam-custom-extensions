@@ -43,7 +43,7 @@ import com.hortonworks.streamline.streams.runtime.CustomProcessorRuntime;
  */
 public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
 
-	private static final String OUTPUT_STREAM_NAME_BASE = "enrich_stream_";
+	private static final String OUTPUT_STREAM_NAME_BASE = "enrich_stream";
 	
 	protected static final Logger LOG = LoggerFactory
 			.getLogger(PhoenixEnrichmentProcessor.class);
@@ -53,13 +53,13 @@ public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
 	private static final String CONFIG_ENRICHED_OUTPUT_FIELDS = "enrichedOutputFields";
 	
 	/* This is temporary work around so we can have unique output stream names. Right now the SAM won't allow the same 2 or more output stream to have the same name*/
-	private static final String CONFIG_OUTPTUT_STREAM_SUFFIX = "outputStreamSuffix";
+	//private static final String CONFIG_OUTPTUT_STREAM_SUFFIX = "outputStreamSuffix";
 
 	/* TODO: GJVETT: You should probably create a pool of connections */
 	private Connection phoenixConnection = null;
 	private String enrichmentSQLStatement = null;
 	private String[] enrichedOutPutFields;
-	private String outputStreamName;
+	//private String outputStreamName;
 	
 
 	public void cleanup() {
@@ -73,9 +73,9 @@ public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
 	public void initialize(Map<String, Object> config) {
 		LOG.info("Initializing + " + PhoenixEnrichmentProcessor.class.getName());
 
-		String outputStreamSuffix = (String) config.get(CONFIG_OUTPTUT_STREAM_SUFFIX);
-		this.outputStreamName = OUTPUT_STREAM_NAME_BASE + outputStreamSuffix;
-		LOG.info("The output stream name is: " + this.outputStreamName);
+		//String outputStreamSuffix = (String) config.get(CONFIG_OUTPTUT_STREAM_SUFFIX);
+		//this.outputStreamName = OUTPUT_STREAM_NAME_BASE + outputStreamSuffix;
+		//LOG.info("The output stream name is: " + this.outputStreamName);
 		
 		this.enrichmentSQLStatement =  ((String) config.get(CONFIG_ENRICHMENT_SQL)).trim();
 		LOG.info("The configured enrichment SQL is: " + enrichmentSQLStatement);
@@ -116,7 +116,7 @@ public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
 		List<StreamlineEvent> newEvents = Collections
 				.<StreamlineEvent> singletonList(enrichedEvent);
 
-		results.add(new Result(this.outputStreamName, newEvents));
+		results.add(new Result(OUTPUT_STREAM_NAME_BASE, newEvents));
 		return results;
 	}
 
