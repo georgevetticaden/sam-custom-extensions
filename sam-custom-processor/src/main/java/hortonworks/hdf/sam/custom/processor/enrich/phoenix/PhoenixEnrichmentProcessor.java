@@ -43,7 +43,6 @@ import com.hortonworks.streamline.streams.runtime.CustomProcessorRuntime;
  */
 public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
 
-	private static final String OUTPUT_STREAM_NAME_BASE = "enrich_stream";
 	
 	protected static final Logger LOG = LoggerFactory
 			.getLogger(PhoenixEnrichmentProcessor.class);
@@ -94,7 +93,7 @@ public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
 	/**
 	 * Enrich the event with teh results from the user provided sql queries
 	 */
-	public List<Result> process(StreamlineEvent event)
+	public List<StreamlineEvent> process(StreamlineEvent event)
 			throws ProcessingException {
 		LOG.info("Event[" + event + "] about to be enriched");
 
@@ -116,8 +115,7 @@ public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
 		List<StreamlineEvent> newEvents = Collections
 				.<StreamlineEvent> singletonList(enrichedEvent);
 
-		results.add(new Result(OUTPUT_STREAM_NAME_BASE, newEvents));
-		return results;
+		return newEvents;
 	}
 
 	/**

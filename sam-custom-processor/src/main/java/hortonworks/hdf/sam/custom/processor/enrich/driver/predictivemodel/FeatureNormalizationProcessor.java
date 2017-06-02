@@ -60,7 +60,7 @@ public class FeatureNormalizationProcessor implements CustomProcessorRuntime {
 	}
 
 	@Override
-	public List<Result> process(StreamlineEvent event)
+	public List<StreamlineEvent> process(StreamlineEvent event)
 			throws ProcessingException {
 		
 		LOG.info("About to do feature normalization event: " + event);
@@ -96,8 +96,7 @@ public class FeatureNormalizationProcessor implements CustomProcessorRuntime {
         LOG.info("Enriched StreamLine Event with normalization  is: " + enrichedEvent );
         
         List<StreamlineEvent> newEvents= Collections.<StreamlineEvent>singletonList(enrichedEvent);
-        results.add(new Result("normalized_features_stream", newEvents));
-        return results;  
+        return newEvents;  
 	}
 
 	private Double normalizeDriverMiles(String driverMiles) {

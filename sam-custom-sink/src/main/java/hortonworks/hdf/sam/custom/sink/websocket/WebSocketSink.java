@@ -44,7 +44,7 @@ public class WebSocketSink implements CustomProcessorRuntime {
     private HashMap<String, MessageProducer> producers = new HashMap<String, MessageProducer>();	
 
     
-	public List<Result> process(StreamlineEvent event)
+	public List<StreamlineEvent> process(StreamlineEvent event)
 			throws ProcessingException {
 		
 		
@@ -58,9 +58,8 @@ public class WebSocketSink implements CustomProcessorRuntime {
         String message = json.toJSONString();
         puhblishMessage(message);
         
-        List<Result> result = new ArrayList<Result>();
-        /* TODO: GJVETT: Should return null if its a sink but there is a bug associated with it so returning empty list */
-        return new ArrayList<Result>();
+        List<StreamlineEvent> result = new ArrayList<StreamlineEvent>();
+        return result;
 	}
 
 	public void initialize(Map<String, Object> config) {

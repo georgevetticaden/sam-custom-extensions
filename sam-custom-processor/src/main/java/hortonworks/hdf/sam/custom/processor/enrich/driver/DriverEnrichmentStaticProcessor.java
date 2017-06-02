@@ -45,7 +45,7 @@ public class DriverEnrichmentStaticProcessor implements CustomProcessorRuntime {
 		
 	}
 
-	public List<Result> process(StreamlineEvent event)
+	public List<StreamlineEvent> process(StreamlineEvent event)
 			throws ProcessingException {
 		Integer driverId = (Integer) event.get(DRIVER_ID_KEY);
 		LOG.info("Driver["+driverId+"] about to be enriched");
@@ -67,8 +67,7 @@ public class DriverEnrichmentStaticProcessor implements CustomProcessorRuntime {
         StreamlineEvent enrichedEvent = builder.dataSourceId(event.getDataSourceId()).build();
         LOG.info("Enriched StreamLine Event is: " + enrichedEvent );
         List<StreamlineEvent> newEvents= Collections.<StreamlineEvent>singletonList(enrichedEvent);
-        results.add(new Result("enrich_stream", newEvents));
-        return results;
+        return newEvents;
 	}
 
 	private Map<String, Object> enrich(Integer driverId) {
