@@ -55,6 +55,11 @@
     "optional": false
   },
   {
+    "name": "geoAddress",
+    "type": "STRING",
+    "optional": true
+  },   
+  {
     "name": "speed",
     "type": "INTEGER",
     "optional": false
