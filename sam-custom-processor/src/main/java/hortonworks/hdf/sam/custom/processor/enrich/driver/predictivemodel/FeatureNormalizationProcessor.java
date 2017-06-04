@@ -43,7 +43,6 @@ public class FeatureNormalizationProcessor implements CustomProcessorRuntime {
 	protected static final Logger LOG = LoggerFactory.getLogger(FeatureNormalizationProcessor.class);
 
 
-	private String normalize;	
 	
 	@Override
 	public void cleanup() {
@@ -55,8 +54,6 @@ public class FeatureNormalizationProcessor implements CustomProcessorRuntime {
 	public void initialize(Map<String, Object> config) {
 		LOG.info("Initialzing FeatureNormalization processor");
 		
-		/* Dont' need this. But SAM upload processor UI requires atleast one config */
-		this.normalize = (String)config.get(CONFIG_NORMALIZE);
 	}
 
 	@Override

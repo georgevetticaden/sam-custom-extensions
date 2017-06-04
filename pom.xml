@@ -15,7 +15,7 @@
   	
   	
 	<properties>
-		<streamline.version>0.5.0.3.0.0.0-431</streamline.version>
+		<streamline.version>0.5.0.3.0.0.0-436</streamline.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<junit.version>4.5</junit.version> 
 	</properties>
