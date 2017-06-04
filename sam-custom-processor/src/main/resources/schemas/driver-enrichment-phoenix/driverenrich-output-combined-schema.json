@@ -55,18 +55,18 @@
     "optional": false
   },
   {
-    "name": "geoAddress",
-    "type": "STRING",
-    "optional": false
-  },
-  {
     "name": "speed",
     "type": "INTEGER",
     "optional": false
   },
   {
+    "name": "week",
+    "type": "INTEGER",
+    "optional": false
+  }, 
+  {
     "name": "splitJoinValue",
-    "type": "DOUBLE",
+    "type": "LONG",
     "optional": false
   },
   {
