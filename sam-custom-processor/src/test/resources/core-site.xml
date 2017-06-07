@@ -1,0 +1,171 @@
+  <configuration>
+    
+    <property>
+      <name>fs.defaultFS</name>
+      <value>hdfs://sam-hdf0.field.hortonworks.com:8020</value>
+      <final>true</final>
+    </property>
+    
+    <property>
+      <name>fs.trash.interval</name>
+      <value>360</value>
+    </property>
+    
+    <property>
+      <name>ha.failover-controller.active-standby-elector.zk.op.retries</name>
+      <value>120</value>
+    </property>
+    
+    <property>
+      <name>ha.zookeeper.acl</name>
+      <value>sasl:nn:rwcda</value>
+    </property>
+    
+    <property>
+      <name>hadoop.http.authentication.simple.anonymous.allowed</name>
+      <value>true</value>
+    </property>
+    
+    <property>
+      <name>hadoop.proxyuser.ambari-server-streamanalytics.groups</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>hadoop.proxyuser.ambari-server-streamanalytics.hosts</name>
+      <value>sam-hdf0.field.hortonworks.com</value>
+    </property>
+    
+    <property>
+      <name>hadoop.proxyuser.hdfs.groups</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>hadoop.proxyuser.hdfs.hosts</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>hadoop.proxyuser.HTTP.groups</name>
+      <value>users</value>
+    </property>
+    
+    <property>
+      <name>hadoop.proxyuser.HTTP.hosts</name>
+      <value>sam-hdf3.field.hortonworks.com</value>
+    </property>
+    
+    <property>
+      <name>hadoop.proxyuser.storm-streamanalytics.groups</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>hadoop.proxyuser.storm-streamanalytics.hosts</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>hadoop.proxyuser.streamline-streamanalytics.groups</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>hadoop.proxyuser.streamline-streamanalytics.hosts</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>hadoop.proxyuser.yarn.groups</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>hadoop.proxyuser.yarn.hosts</name>
+      <value>sam-hdf1.field.hortonworks.com</value>
+    </property>
+    
+    <property>
+      <name>hadoop.security.auth_to_local</name>
+      <value>RULE:[1:$1@$0](ambari-qa-streamanalytics@STREAMANALYTICS)s/.*/ambari-qa/
+RULE:[1:$1@$0](druid@STREAMANALYTICS)s/.*/druid/
+RULE:[1:$1@$0](hbase-streamanalytics@STREAMANALYTICS)s/.*/hbase/
+RULE:[1:$1@$0](hdfs-streamanalytics@STREAMANALYTICS)s/.*/hdfs/
+RULE:[1:$1@$0](.*@STREAMANALYTICS)s/@.*//
+RULE:[2:$1@$0](activity_analyzer@STREAMANALYTICS)s/.*/activity_analyzer/
+RULE:[2:$1@$0](activity_explorer@STREAMANALYTICS)s/.*/activity_explorer/
+RULE:[2:$1@$0](amshbase@STREAMANALYTICS)s/.*/ams/
+RULE:[2:$1@$0](amszk@STREAMANALYTICS)s/.*/ams/
+RULE:[2:$1@$0](dn@STREAMANALYTICS)s/.*/hdfs/
+RULE:[2:$1@$0](hbase@STREAMANALYTICS)s/.*/hbase/
+RULE:[2:$1@$0](jhs@STREAMANALYTICS)s/.*/mapred/
+RULE:[2:$1@$0](jn@STREAMANALYTICS)s/.*/hdfs/
+RULE:[2:$1@$0](nfs@STREAMANALYTICS)s/.*/hdfs/
+RULE:[2:$1@$0](nifi@STREAMANALYTICS)s/.*/nifi/
+RULE:[2:$1@$0](nm@STREAMANALYTICS)s/.*/yarn/
+RULE:[2:$1@$0](nn@STREAMANALYTICS)s/.*/hdfs/
+RULE:[2:$1@$0](rangeradmin@STREAMANALYTICS)s/.*/ranger/
+RULE:[2:$1@$0](rangertagsync@STREAMANALYTICS)s/.*/rangertagsync/
+RULE:[2:$1@$0](rangerusersync@STREAMANALYTICS)s/.*/rangerusersync/
+RULE:[2:$1@$0](rm@STREAMANALYTICS)s/.*/yarn/
+RULE:[2:$1@$0](yarn@STREAMANALYTICS)s/.*/yarn/
+DEFAULT</value>
+    </property>
+    
+    <property>
+      <name>hadoop.security.authentication</name>
+      <value>kerberos</value>
+    </property>
+    
+    <property>
+      <name>hadoop.security.authorization</name>
+      <value>true</value>
+    </property>
+    
+    <property>
+      <name>io.compression.codecs</name>
+      <value>org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.SnappyCodec</value>
+    </property>
+    
+    <property>
+      <name>io.file.buffer.size</name>
+      <value>131072</value>
+    </property>
+    
+    <property>
+      <name>io.serializations</name>
+      <value>org.apache.hadoop.io.serializer.WritableSerialization</value>
+    </property>
+    
+    <property>
+      <name>ipc.client.connect.max.retries</name>
+      <value>50</value>
+    </property>
+    
+    <property>
+      <name>ipc.client.connection.maxidletime</name>
+      <value>30000</value>
+    </property>
+    
+    <property>
+      <name>ipc.client.idlethreshold</name>
+      <value>8000</value>
+    </property>
+    
+    <property>
+      <name>ipc.server.tcpnodelay</name>
+      <value>true</value>
+    </property>
+    
+    <property>
+      <name>mapreduce.jobtracker.webinterface.trusted</name>
+      <value>false</value>
+    </property>
+    
+    <property>
+      <name>net.topology.script.file.name</name>
+      <value>/etc/hadoop/conf/topology_script.py</value>
+    </property>
+    
+  </configuration>

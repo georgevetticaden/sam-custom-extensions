@@ -2,7 +2,6 @@ package hortonworks.hdf.sam.custom.processor.enrich.phoenix;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -38,18 +37,25 @@ import com.hortonworks.streamline.streams.runtime.CustomProcessorRuntime;
  * 2.select hours_logged, miles_logged from timesheet where driverid= ${driverId} and
  * week=${week}";
  * 
+ * Supports both secure and unsecure Phoneix/HBase Clusters
+ * 
  * @author gvetticaden
  *
  */
-public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
+public class PhoenixEnrichmentSecureProcessor implements CustomProcessorRuntime {
 
 	
 	protected static final Logger LOG = LoggerFactory
-			.getLogger(PhoenixEnrichmentProcessor.class);
+			.getLogger(PhoenixEnrichmentSecureProcessor.class);
 
-	private static final String CONFIG_ZK_SERVER_URL = "zkServerUrl";
-	private static final String CONFIG_ENRICHMENT_SQL = "enrichmentSQL";
-	private static final String CONFIG_ENRICHED_OUTPUT_FIELDS = "enrichedOutputFields";
+	static final String CONFIG_ZK_SERVER_URL = "zkServerUrl";
+	static final String CONFIG_ENRICHMENT_SQL = "enrichmentSQL";
+	static final String CONFIG_ENRICHED_OUTPUT_FIELDS = "enrichedOutputFields";
+	
+	static final String CONFIG_SECURE_CLUSTER = "secureCluster";
+	static final String CONFIG_KERBEROS_CLIENT_PRINCIPAL = "kerberosClientPrincipal";
+	static final String CONFIG_KERBEROS_KEYTAB_FILE = "kerberosKeyTabFile";
+
 	
 	/* This is temporary work around so we can have unique output stream names. Right now the SAM won't allow the same 2 or more output stream to have the same name*/
 	//private static final String CONFIG_OUTPTUT_STREAM_SUFFIX = "outputStreamSuffix";
@@ -58,6 +64,8 @@ public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
 	private Connection phoenixConnection = null;
 	private String enrichmentSQLStatement = null;
 	private String[] enrichedOutPutFields;
+	private boolean secureCluster;
+	
 	//private String outputStreamName;
 	
 
@@ -65,16 +73,15 @@ public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
 		DbUtils.closeQuietly(phoenixConnection);
 
 	}
+	
+
 
 	/**
 	 * Initializing the JDBC connection to Phoenix
 	 */
 	public void initialize(Map<String, Object> config) {
-		LOG.info("Initializing + " + PhoenixEnrichmentProcessor.class.getName());
+		LOG.info("Initializing + " + PhoenixEnrichmentSecureProcessor.class.getName());
 
-		//String outputStreamSuffix = (String) config.get(CONFIG_OUTPTUT_STREAM_SUFFIX);
-		//this.outputStreamName = OUTPUT_STREAM_NAME_BASE + outputStreamSuffix;
-		//LOG.info("The output stream name is: " + this.outputStreamName);
 		
 		this.enrichmentSQLStatement =  ((String) config.get(CONFIG_ENRICHMENT_SQL)).trim();
 		LOG.info("The configured enrichment SQL is: " + enrichmentSQLStatement);
@@ -84,8 +91,12 @@ public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
 		String outputFieldsCleaned = StringUtils.deleteWhitespace(outputFields);
 		this.enrichedOutPutFields = outputFieldsCleaned.split(",");
 		LOG.info("Enriched Output fields is: " + enrichedOutPutFields);
-
-		setUpJDBCPhoenixConnection(config);
+		
+		LOG.info("Seure Cluster Flag is: " + config.get(CONFIG_SECURE_CLUSTER));
+		LOG.info("Kerberos Principal is: " + config.get(CONFIG_KERBEROS_CLIENT_PRINCIPAL));
+		LOG.info("Kerberos KeyTab is: " + config.get(CONFIG_KERBEROS_KEYTAB_FILE));		
+		
+		setUpJDBCPhoenixConnection(config);		
 
 	}
 
@@ -170,23 +181,60 @@ public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
 		return enrichedValues;
 	}
 
-	public void validateConfig(Map<String, Object> arg0) throws ConfigException {
-		// TODO Auto-generated method stub
+	@Override
+	public void validateConfig(Map<String, Object> config) throws ConfigException {
+		boolean isSecureCluster =  config.get(CONFIG_SECURE_CLUSTER) != null && ((Boolean) config.get(CONFIG_SECURE_CLUSTER)).booleanValue();
+		if(isSecureCluster) {
+			String principal = (String) config.get(CONFIG_KERBEROS_CLIENT_PRINCIPAL);
+			String keyTab  = (String) config.get(CONFIG_KERBEROS_KEYTAB_FILE);
+			if(StringUtils.isEmpty(principal) || StringUtils.isEmpty(keyTab)) {
+				throw new ConfigException("If Secure Cluster, Kerberos principal and key tabe must be provided");
+			}
+		}
 
 	}
 
 
 
-	private String constructJDBCPhoenixConnectionUrl(String zkServerUrl) {
+	private String constructInSecureJDBCPhoenixConnectionUrl(String zkServerUrl) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("jdbc:phoenix:").append(zkServerUrl)
 				.append(":/hbase-unsecure");
 		return buffer.toString();
 	}
 	
+	//jdbc:phoenix:zk_quorum:2181:/hbase-secure:hbase@EXAMPLE.COM:/hbase-secure/keytab/keytab_file
+
+	private String constructSecureJDBCPhoenixConnectionUrl(String zkServerUrl, String clientPrincipal, String keyTabFile) {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("jdbc:phoenix:").append(zkServerUrl)
+				.append(":/hbase-secure")
+				.append(":").append(clientPrincipal)
+				.append(":").append(keyTabFile);
+		return buffer.toString();
+	}	
+	
+	
+
+	
 	private void setUpJDBCPhoenixConnection(Map<String, Object> config) {
 		String zkServerUrl = (String) config.get(CONFIG_ZK_SERVER_URL);
-		String jdbcPhoenixConnectionUrl = constructJDBCPhoenixConnectionUrl(zkServerUrl);
+		
+		
+
+	
+		boolean secureCluster = config.get(CONFIG_SECURE_CLUSTER) != null && ((Boolean)config.get(CONFIG_SECURE_CLUSTER)).booleanValue();
+				
+		String clientPrincipal = (String)config.get(CONFIG_KERBEROS_CLIENT_PRINCIPAL);
+		String keyTabFile =  (String)config.get(CONFIG_KERBEROS_KEYTAB_FILE);		
+		
+		String jdbcPhoenixConnectionUrl = "";
+		if(secureCluster) {
+			jdbcPhoenixConnectionUrl = constructSecureJDBCPhoenixConnectionUrl(zkServerUrl, clientPrincipal, keyTabFile);
+		} else {
+			jdbcPhoenixConnectionUrl = constructInSecureJDBCPhoenixConnectionUrl(zkServerUrl);
+		}
+		
 		LOG.info("Initializing Phoenix Connection with JDBC connection string["
 				+ jdbcPhoenixConnectionUrl + "]");
 		try {
@@ -200,5 +248,6 @@ public class PhoenixEnrichmentProcessor implements CustomProcessorRuntime {
 		LOG.info("Successfully created Phoenix Connection with JDBC connection string["
 				+ jdbcPhoenixConnectionUrl + "]");
 	}	
+	
 
 }
