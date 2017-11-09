@@ -63,7 +63,10 @@ public class PhoenixEnrichmentSecureProcessorTest {
 	private StreamlineEvent createStreamLineEvent() {
 		Map<String, Object> keyValues = new HashMap<String, Object>();
 		keyValues.put("driverId", 14);
-		StreamlineEventImpl event = new StreamlineEventImpl(keyValues, "1");
+		
+		//StreamlineEventImpl event = new StreamlineEventImpl(keyValues, "1");
+		StreamlineEvent event = StreamlineEventImpl.builder().build().addFieldsAndValues(keyValues);
+		
 		System.out.println("Iinput StreamLIne event is: " + ReflectionToStringBuilder.toString(event));
 
 		

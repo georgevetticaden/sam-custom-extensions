@@ -14,11 +14,13 @@ import javax.jms.TextMessage;
 import javax.jms.Topic;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+
+import com.hortonworks.streamline.common.exception.ConfigException;
 import com.hortonworks.streamline.streams.Result;
 import com.hortonworks.streamline.streams.StreamlineEvent;
-import com.hortonworks.streamline.streams.exception.ConfigException;
 import com.hortonworks.streamline.streams.exception.ProcessingException;
 import com.hortonworks.streamline.streams.runtime.CustomProcessorRuntime;
+
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

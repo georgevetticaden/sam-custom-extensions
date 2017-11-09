@@ -17,10 +17,10 @@ import org.apache.commons.lang.text.StrSubstitutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hortonworks.streamline.common.exception.ConfigException;
 import com.hortonworks.streamline.streams.Result;
 import com.hortonworks.streamline.streams.StreamlineEvent;
 import com.hortonworks.streamline.streams.common.StreamlineEventImpl;
-import com.hortonworks.streamline.streams.exception.ConfigException;
 import com.hortonworks.streamline.streams.exception.ProcessingException;
 import com.hortonworks.streamline.streams.runtime.CustomProcessorRuntime;
 
