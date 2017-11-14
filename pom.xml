@@ -11,6 +11,7 @@
   		<module>sam-custom-processor</module>
   		<module>sam-custom-udf</module>
   		<module>sam-custom-sink</module>
+  		<module>sam-custom-source-kinesis</module>
   	</modules>
   	
   	

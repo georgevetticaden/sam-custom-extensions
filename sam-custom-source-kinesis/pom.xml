@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  
+	<parent>
+    	<groupId>hortonworks.hdf.sam.custom</groupId>
+    	<artifactId>sam-custom-extensions</artifactId>
+    	<version>0.0.8</version>
+  	</parent>
+  
+  	<artifactId>sam-custom-source-kinesis</artifactId>
+  	
+  	<properties>
+  		<storm.kinesis.version>1.1.0</storm.kinesis.version>
+  		<aws.kinesis.version>1.8.7</aws.kinesis.version>
+  		<storm.version>1.1.0</storm.version>
+  	</properties>
+  	
+  	<dependencies>
+  	
+  	
+  		<!-- AWS Kinesis Client modules (ordering is important as this needs to be the first dependency -->
+  		<dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>amazon-kinesis-client</artifactId>
+            <version>${aws.kinesis.version}</version>
+        </dependency>  	
+  	
+  		<!-- I needd this module from SAM for AvroStreamsSnapshotDeserializer -->
+  		<dependency>
+  			<groupId>com.hortonworks.streamline</groupId>
+  			<artifactId>streamline-runtime-storm</artifactId>
+  			<version>${streamline.version}</version>
+  		</dependency>
+  		
+  	
+  		<!-- Storm Kinesis spout module -->
+  		<dependency>
+			<groupId>org.apache.storm</groupId>
+        	<artifactId>storm-kinesis</artifactId>
+        	<version>${storm.kinesis.version}</version>
+  		</dependency>
+  		
+  		
+  		<!-- Storm  -->
+  		<dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-core</artifactId>
+            <version>${storm.version}</version>
+            <scope>provided</scope>
+        </dependency>
+  	
+  	</dependencies>
+  	
+	<build>
+        <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			        
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+            
+		    <plugin>
+		      <artifactId>maven-assembly-plugin</artifactId>
+		      <version>2.6</version>
+		      <configuration>
+		
+		        <descriptorRefs>
+		          <descriptorRef>jar-with-dependencies</descriptorRef>
+		        </descriptorRefs>
+		      </configuration>
+		    </plugin>	            
+        </plugins>
+    </build>     	
+</project>

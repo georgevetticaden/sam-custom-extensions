@@ -1,0 +1,181 @@
+{
+  "type": "SOURCE",
+  "name": "Kinesis",
+  "subType": "KINESIS",
+  "streamingEngine": "STORM",
+  "builtin": false,
+  "transformationClass": "hortonworks.hdf.sam.custom.source.kinesis.KinesisSpoutFluxComponent",
+  "topologyComponentUISpecification": {
+    "fields": [
+      {
+        "uiName": "AWS Access Key Id",
+        "fieldName": "awsAccessKeyId",
+        "isOptional": false,
+        "tooltip": "AWS Access Key Id",
+        "type": "string"
+      },
+      {
+        "uiName": "AWS Access Key Secret",
+        "fieldName": "awsAccessKeySecret",
+        "isOptional": false,
+        "tooltip": "AWS Access Key Secret",
+        "type": "string"
+      },     
+      {
+        "uiName": "AWS Region",
+        "fieldName": "awsRegion",
+        "isOptional": false,
+        "tooltip": "AWS Region",
+        "type": "enumstring",
+        "options": ["GovCloud", "US_EAST_1" ,"US_EAST_2" ,"US_WEST_1", "US_WEST_2", "EU_WEST_1", "EU_WEST_2", "EU_CENTRAL_1", "AP_SOUTH_1", "AP_SOUTHEAST_1", "AP_SOUTHEAST_2", "AP_NORTHEAST_1", "AP_NORTHEAST_2", "SA_EAST_1", "CN_NORTH_1", "CA_CENTRAL_1"],
+        "defaultValue": "US_WEST_2"
+      },       
+      {
+        "uiName": "Kinesis Stream",
+        "fieldName": "streamName",
+        "isOptional": false,
+        "tooltip": "Kinesis Stream to Read From",
+        "type": "string",
+        "hint": "schema,override"
+      },      
+ 	  {
+        "uiName": "Reader schema version",
+        "fieldName": "readerSchemaVersion",
+        "isOptional": false,
+        "tooltip": "Version of schema for topic to use for deserializing the message. Default is version used by kinesis producer to write the message",
+        "type": "enumstring",
+        "options": [],
+        "hint": "dependsOn-streamName,schemaVersion"
+      },
+	  {
+        "uiName": "Shard Iterator Type",
+        "fieldName": "shardIteratorType",
+        "isOptional": false,
+        "tooltip": "Determines where to start fetching data when consuming data for the first time",
+        "type": "enumstring",
+        "options": ["TRIM_HORIZON", "LATEST", "AT_TIMESTAMP"],
+        "defaultValue": "TRIM_HORIZON"
+      },     
+	  {
+        "uiName": "Schema Registry URL",
+        "fieldName": "schemaRegistryUrl",
+        "isOptional": false,
+        "tooltip": "URL to Schema Registry Endpoint",
+        "type": "string"
+      },      
+	  {
+        "uiName": "Retry Delay",
+        "fieldName": "retryInitialDelayMs",
+        "isOptional": true,
+        "tooltip": "initialDelayMillis delay in milliseconds for first retry",
+        "type": "number",
+        "defaultValue": 100
+      },       
+	  {
+        "uiName": "Retry Base",
+        "fieldName": "retryBaseSeconds",
+        "isOptional": true,
+        "tooltip": "baseSeconds base for exponent function in seconds",
+        "type": "number",
+        "defaultValue": 2
+      },   
+	  {
+        "uiName": "Retry Max Retries",
+        "fieldName": "retryMaxTries",
+        "isOptional": true,
+        "tooltip": "maxRetries maximum number of retries before the record is discarded/acked",
+        "type": "number",
+        "defaultValue": 1000
+      },    
+	  {
+        "uiName": "Zookeeper URL",
+        "fieldName": "zkUrl",
+        "isOptional": false,
+        "tooltip": "Zookeeper URL",
+        "type": "string"
+      },       
+	  {
+        "uiName": "Zookeeper Node Name for Kinesis Offset",
+        "fieldName": "zkPath",
+        "isOptional": true,
+        "tooltip": "Path in zookeeper where offsets are stored in ZK",
+        "type": "string",
+        "defaultValue": "/kinesisOffsets"
+        
+      },             
+	  {
+        "uiName": "Zookeeper Session Timeout",
+        "fieldName": "zkSessionTimeoutMs",
+        "isOptional": true,
+        "tooltip": "ZK Session Timeout",
+        "type": "number",
+        "defaultValue": 20000
+        
+      },  
+	  {
+        "uiName": "Zookeeper Connection Timeout",
+        "fieldName": "zkConnectionTimeoutMs",
+        "isOptional": true,
+        "tooltip": "ZK Connection Timeout",
+        "type": "number",
+        "defaultValue": 20000
+        
+      },          
+	  {
+        "uiName": "Zookeeper Commit Interval",
+        "fieldName": "zkCommitIntervalMs",
+        "isOptional": true,
+        "tooltip": "ZK Commit Interval",
+        "type": "number",
+        "defaultValue": 10000
+        
+      },      
+	  {
+        "uiName": "Zookeeper Retry Attempts",
+        "fieldName": "zkRetryAttempts",
+        "isOptional": true,
+        "tooltip": "ZK Retry Attempts",
+        "type": "number",
+        "defaultValue": 3
+        
+      },      
+	  {
+        "uiName": "Zookeeper Retry Interval",
+        "fieldName": "zkRetryIntervalMs",
+        "isOptional": true,
+        "tooltip": "ZK Retry Interval",
+        "type": "number",
+        "defaultValue": 2000
+        
+      },       
+	  {
+        "uiName": "Kinesis Records Limit",
+        "fieldName": "kinesisRecordsLimit",
+        "isOptional": true,
+        "tooltip": "Maximum number of Kinesis records return for a given get",
+        "type": "number",
+        "defaultValue": 1000
+        
+      },    
+	  {
+        "uiName": "Max Uncommitted Records",
+        "fieldName": "maxUncommittedRecords",
+        "isOptional": true,
+        "tooltip": "maximum number of uncommitted sequence numbers allowed per task",
+        "type": "number",
+        "defaultValue": 1000
+        
+      },              
+      {
+        "uiName": "Parallelism",
+        "fieldName": "parallelism",
+        "isOptional": true,
+        "tooltip": "Parallelism hint for Kinesis spout",
+        "type": "number",
+        "defaultValue": 1,
+        "min": 1,
+        "hint": "hidden"
+      }
+    ]
+  }
+}
