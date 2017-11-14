@@ -40,10 +40,10 @@ public class AvroSchemaRegistryRecordToTupleMapper implements
 
 
 	public AvroSchemaRegistryRecordToTupleMapper(String schemaRegistryUrl,
-			Integer readerSchemaVersion, String dataSourceId) {
+			String schemaVersion, String dataSourceId) {
 		super();
 		this.schemaRegistryUrl = schemaRegistryUrl;
-		this.readerSchemaVersion = readerSchemaVersion;
+		this.readerSchemaVersion = Integer.valueOf(schemaVersion);
 		this.dataSourceId = dataSourceId;
 		this.avroStreamsSnapshotDeserializer = createDeserializer();
 		

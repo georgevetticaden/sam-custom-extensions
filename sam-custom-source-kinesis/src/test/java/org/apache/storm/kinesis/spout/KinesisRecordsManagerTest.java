@@ -26,7 +26,7 @@ public class KinesisRecordsManagerTest {
 	private static final String KINESIS_TRUCK_STREAM_NAME = "truck_events_avro";
 	private static final String KINESIS_TRUCK_SPEED_STREAM_NAME = "truck_speed_events_avro";
 	private static final Regions AWS_REGION = Regions.US_WEST_2;
-	private static final Integer SCHEMA_REGISTRY_TRUCK_GEO_EVENT_READER_SCHEMA_READER_VERSION = 1;
+	private static final String SCHEMA_REGISTRY_TRUCK_GEO_EVENT_READER_SCHEMA_READER_VERSION = "1";
 	private static final String SCHEMA_REGISTRY_URL = "http://hdf-3-1-build3.field.hortonworks.com:7788/api/v1";
 	
 	private static final long SPOUT_MAX_UNCOMMITTED_RECORDS = 10000L;
@@ -84,7 +84,7 @@ public class KinesisRecordsManagerTest {
 		return kinesisConfig;
 	}
 
-	private RecordToTupleMapper createSchemaRegistryAvroTupleMapper(String schemaRegistryUrl, Integer readerSchemaVersion, String dataSourceId) {
+	private RecordToTupleMapper createSchemaRegistryAvroTupleMapper(String schemaRegistryUrl, String readerSchemaVersion, String dataSourceId) {
 		AvroSchemaRegistryRecordToTupleMapper mapper = new AvroSchemaRegistryRecordToTupleMapper(schemaRegistryUrl, readerSchemaVersion, dataSourceId);
 		return mapper;
 	}
