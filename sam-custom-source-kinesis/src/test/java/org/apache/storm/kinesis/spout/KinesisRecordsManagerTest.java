@@ -68,17 +68,17 @@ public class KinesisRecordsManagerTest {
 		KinesisConfig kinesisConfig = createKinesisConfig(ZK_URL, KINESIS_TRUCK_STREAM_NAME, tupleMapper, kinesisConnectionInfo);
 		KinesisRecordsManager kinesisRecordsManager = new KinesisRecordsManager(kinesisConfig);
 		kinesisRecordsManager.initialize(1, 1);
-		SpoutOutputCollector collector = null;
-		LOG.info("about to call next...");
-		kinesisRecordsManager.next(collector);
-		LOG.info("Done calling next...");
+//		SpoutOutputCollector collector = null;
+//		LOG.info("about to call next...");
+//		kinesisRecordsManager.next(collector);
+//		LOG.info("Done calling next...");
 	}
 
 
 	private KinesisConfig createKinesisConfig(String zkUrl, String streamName,  RecordToTupleMapper avroTupleMapper, KinesisConnectionInfo kinesisConnectionInfo ) {
         ZkInfo zkInfo = new ZkInfo(zkUrl, ZK_NODE_KINESIS_OFFSETS, ZK_SESSION_TIME_OUT, ZK_CONNECTION_TIME_OUT, ZK_COMMIT_INTERVAL, ZK_RETRY_ATTEMPTS, ZK_RETRY_INTERVAL);
         
-		KinesisConfig kinesisConfig = new KinesisConfig(streamName, ShardIteratorType.TRIM_HORIZON,
+		KinesisConfig kinesisConfig = new KinesisConfig(streamName, ShardIteratorType.TRIM_HORIZON.name(),
 				avroTupleMapper, new Date(), new ExponentialBackoffRetrier(), zkInfo, kinesisConnectionInfo, SPOUT_MAX_UNCOMMITTED_RECORDS);
 		
 		return kinesisConfig;
@@ -90,7 +90,7 @@ public class KinesisRecordsManagerTest {
 	}
 	
 	private KinesisConnectionInfo createKinesisConnectionInfo(AWSCredentialsProvider credentialsProvider, ClientConfiguration clientConfiguration, Regions region, Integer recordsLimit) {
-		KinesisConnectionInfo kinesisConnectionInfo = new KinesisConnectionInfo(credentialsProvider, clientConfiguration, region, recordsLimit);
+		KinesisConnectionInfo kinesisConnectionInfo = new KinesisConnectionInfo(credentialsProvider, clientConfiguration, region.name(), recordsLimit);
 		return kinesisConnectionInfo;
 	}
 	
