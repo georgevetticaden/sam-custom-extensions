@@ -79,7 +79,12 @@ public class KinesisSpoutFluxComponent extends AbstractFluxComponent {
         List<Object> constructorArgs = new ArrayList<>();
         addArg(constructorArgs, getRefYaml(kinesisConfigRef));
         
-        component = createComponent(spoutId, spoutClassName, null, constructorArgs, null);
+        List<Object> configMethods = new ArrayList<>();
+        String[] configMethodNames = { "withOutputStream"};
+        String[] configKeys = { TopologyLayoutConstants.JSON_KEY_OUTPUT_STREAM_ID};
+        configMethods.addAll(getConfigMethodsYaml(configMethodNames, configKeys));          
+        
+        component = createComponent(spoutId, spoutClassName, null, constructorArgs, configMethods);
         addParallelismToComponent();
     }
 
