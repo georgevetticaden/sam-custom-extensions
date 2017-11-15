@@ -10,11 +10,11 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.amazonaws.ClientConfiguration;
-import com.amazonaws.auth.AWSCredentialsProvider;
-import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.kinesis.model.ShardIteratorType;
+import com.amazonaws.shaded.ClientConfiguration;
+import com.amazonaws.shaded.auth.AWSCredentialsProvider;
+import com.amazonaws.shaded.auth.DefaultAWSCredentialsProviderChain;
+import com.amazonaws.shaded.regions.Regions;
+import com.amazonaws.shaded.services.kinesis.model.ShardIteratorType;
 
 public class KinesisRecordsManagerTest {
 

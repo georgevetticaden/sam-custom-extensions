@@ -3,7 +3,7 @@ package hortonworks.hdf.sam.custom.source.kinesis;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.amazonaws.services.kinesis.model.ShardIteratorType;
+import com.amazonaws.shaded.services.kinesis.model.ShardIteratorType;
 import com.hortonworks.streamline.streams.layout.TopologyLayoutConstants;
 import com.hortonworks.streamline.streams.layout.component.StreamlineSource;
 import com.hortonworks.streamline.streams.layout.storm.AbstractFluxComponent;

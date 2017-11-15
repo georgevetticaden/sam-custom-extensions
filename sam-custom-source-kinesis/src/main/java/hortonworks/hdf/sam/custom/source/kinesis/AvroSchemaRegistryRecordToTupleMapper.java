@@ -9,7 +9,7 @@ import java.util.Map;
 import org.apache.storm.kinesis.spout.RecordToTupleMapper;
 import org.apache.storm.tuple.Fields;
 
-import com.amazonaws.services.kinesis.model.Record;
+import com.amazonaws.shaded.services.kinesis.model.Record;
 import com.hortonworks.registries.schemaregistry.client.SchemaRegistryClient;
 import com.hortonworks.streamline.streams.StreamlineEvent;
 import com.hortonworks.streamline.streams.common.StreamlineEventImpl;
