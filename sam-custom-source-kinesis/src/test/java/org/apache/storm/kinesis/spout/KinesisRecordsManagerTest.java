@@ -65,13 +65,15 @@ public class KinesisRecordsManagerTest {
 																			  SCHEMA_REGISTRY_TRUCK_GEO_EVENT_READER_SCHEMA_READER_VERSION, 
 																			  dataSourceId);
 		
+		//AWSStaticCredentialsProvid
+		
 		KinesisConfig kinesisConfig = createKinesisConfig(ZK_URL, KINESIS_TRUCK_STREAM_NAME, tupleMapper, kinesisConnectionInfo);
 		KinesisRecordsManager kinesisRecordsManager = new KinesisRecordsManager(kinesisConfig, "outputStream");
 		kinesisRecordsManager.initialize(1, 1);
-		SpoutOutputCollector collector = null;
-		LOG.info("about to call next...");
-		kinesisRecordsManager.next(collector);
-		LOG.info("Done calling next...");
+//		SpoutOutputCollector collector = null;
+//		LOG.info("about to call next...");
+//		kinesisRecordsManager.next(collector);
+//		LOG.info("Done calling next...");
 	}
 
 
