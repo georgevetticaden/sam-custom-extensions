@@ -181,7 +181,7 @@ public class KinesisSpoutFluxComponent extends AbstractFluxComponent {
     private String getCredeentialsProviderChain() {
     	
     	String componentId = "credentialsProviderChain" + UUID_FOR_COMPONENTS;
-    	String className = "com.amazonaws.auth.AWSStaticCredentialsProvider";
+    	String className = "com.amazonaws.shaded.auth.AWSStaticCredentialsProvider";
     	
     	List<Object> constructorArgs = new ArrayList<>();
     	addArg(constructorArgs, getRefYaml(getBasicAWSCredentials()));
@@ -194,7 +194,7 @@ public class KinesisSpoutFluxComponent extends AbstractFluxComponent {
 
     private String getBasicAWSCredentials() {
     	String componentId = "basicAWSCredentials" + UUID_FOR_COMPONENTS;
-    	String className = "com.amazonaws.auth.BasicAWSCredentials";
+    	String className = "com.amazonaws.shaded.auth.BasicAWSCredentials";
     	List<Object> constructorArgs = new ArrayList<>();
     	addArg(constructorArgs, KEY_AWS_KEY_ID);
     	addArg(constructorArgs, KEY_AWS_KEY_SECRET);
@@ -208,7 +208,7 @@ public class KinesisSpoutFluxComponent extends AbstractFluxComponent {
 
 	private String getClientConfiguration() {
         String componentId = "clientConfiguration" + UUID_FOR_COMPONENTS;
-        String className = "com.amazonaws.ClientConfiguration";
+        String className = "com.amazonaws.shaded.ClientConfiguration";
         addToComponents(createComponent(componentId, className, null, null, null));
         return componentId;
     }
