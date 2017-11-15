@@ -41,9 +41,7 @@ public class KinesisRecordsManagerTest {
 	
 	@Test
 	public void createRegion() {
-		Regions regions  = Regions.valueOf("US_EAST_2");
-		Assert.assertNotNull(regions);
-		LOG.info(regions.getName());
+		ClientConfiguration config = new ClientConfiguration();
 	}
 	
 
