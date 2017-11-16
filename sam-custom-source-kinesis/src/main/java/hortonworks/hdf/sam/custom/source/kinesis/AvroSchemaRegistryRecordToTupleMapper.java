@@ -52,14 +52,13 @@ public class AvroSchemaRegistryRecordToTupleMapper implements
 	@Override
 	public List<Object> getTuple(Record record) {
 
-		LOG.info("About to deserilaize Kinesis Record [ " + record + " } with Avro Deserializer");
 		
         Map<String, Object> keyValues = (Map<String, Object>) getDeserializer().deserialize(new AvroKafkaSpoutTranslator.ByteBufferInputStream(record.getData()),
                 readerSchemaVersion);		
         
         StreamlineEvent streamlineEvent = StreamlineEventImpl.builder().putAll(keyValues).dataSourceId(dataSourceId).build();
         
-        LOG.info("Deserialized Kinesis Record["+record + "] to StreamLineEvent[" + streamlineEvent);
+        LOG.debug("Deserialized Kinesis Record["+record + "] to StreamLineEvent[" + streamlineEvent);
         
         return Collections.<Object> singletonList(streamlineEvent);	
 	}
