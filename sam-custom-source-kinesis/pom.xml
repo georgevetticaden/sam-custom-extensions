@@ -11,7 +11,7 @@
   	<artifactId>sam-custom-source-kinesis</artifactId>
   	
   	<properties>
-  		<storm.kinesis.version>1.1.0.4</storm.kinesis.version>
+  		<storm.kinesis.version>1.1.0.5</storm.kinesis.version>
   		<storm.version>1.1.0</storm.version>
   	</properties>
   	

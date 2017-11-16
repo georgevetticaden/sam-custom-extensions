@@ -44,10 +44,7 @@ public class AvroSchemaRegistryRecordToTupleMapper implements
 		super();
 		this.schemaRegistryUrl = schemaRegistryUrl;
 		this.readerSchemaVersion = Integer.valueOf(schemaVersion);
-		this.dataSourceId = dataSourceId;
-		this.avroStreamsSnapshotDeserializer = createDeserializer();
-		
-		LOG.info("AvroSchemaRegistryRecordToTupleMapper created successfully");
+		this.dataSourceId = dataSourceId;		
 	}
 
 
@@ -55,8 +52,9 @@ public class AvroSchemaRegistryRecordToTupleMapper implements
 	@Override
 	public List<Object> getTuple(Record record) {
 
+		LOG.info("About to deserilaize Kinesis Record [ " + record + " } with Avro Deserializer");
 		
-        Map<String, Object> keyValues = (Map<String, Object>) avroStreamsSnapshotDeserializer.deserialize(new AvroKafkaSpoutTranslator.ByteBufferInputStream(record.getData()),
+        Map<String, Object> keyValues = (Map<String, Object>) getDeserializer().deserialize(new AvroKafkaSpoutTranslator.ByteBufferInputStream(record.getData()),
                 readerSchemaVersion);		
         
         StreamlineEvent streamlineEvent = StreamlineEventImpl.builder().putAll(keyValues).dataSourceId(dataSourceId).build();
@@ -71,12 +69,15 @@ public class AvroSchemaRegistryRecordToTupleMapper implements
 		return new Fields(StreamlineEvent.STREAMLINE_EVENT);
 	}
 	
-    private AvroStreamsSnapshotDeserializer createDeserializer () {
-        AvroStreamsSnapshotDeserializer deserializer = new AvroStreamsSnapshotDeserializer();
-        Map<String, Object> config = new HashMap<>();
-        config.put(SchemaRegistryClient.Configuration.SCHEMA_REGISTRY_URL.name(), schemaRegistryUrl);
-        deserializer.init(config);
-        return deserializer;
+    private AvroStreamsSnapshotDeserializer getDeserializer () {
+    	if(avroStreamsSnapshotDeserializer == null) {
+    		avroStreamsSnapshotDeserializer = new AvroStreamsSnapshotDeserializer();
+    		Map<String, Object> config = new HashMap<>();
+            config.put(SchemaRegistryClient.Configuration.SCHEMA_REGISTRY_URL.name(), schemaRegistryUrl);
+            avroStreamsSnapshotDeserializer.init(config);
+            LOG.info("AvroSchemaRegistryRecordToTupleMapper created successfully");
+    	}
+    	return avroStreamsSnapshotDeserializer;
     }	
 
 }
