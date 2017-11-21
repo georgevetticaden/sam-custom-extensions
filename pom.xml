@@ -3,7 +3,7 @@
   	<modelVersion>4.0.0</modelVersion>
   	<groupId>hortonworks.hdf.sam.custom</groupId>
   	<artifactId>sam-custom-extensions</artifactId>
-  	<version>0.0.9</version>
+  	<version>0.0.10</version>
   	<packaging>pom</packaging>
 
 
@@ -16,7 +16,7 @@
   	
   	
 	<properties>
-		<streamline.version>0.5.0.3.1.0.0-247</streamline.version>
+		<streamline.version>0.5.0.3.1.0.0-270</streamline.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<junit.version>4.5</junit.version> 
 	</properties>

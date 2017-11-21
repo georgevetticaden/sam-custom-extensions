@@ -5,7 +5,7 @@
   "streamingEngine": "STORM",
   "builtin": false,
   "transformationClass": "hortonworks.hdf.sam.custom.source.kinesis.KinesisSpoutFluxComponent",
-  "mavenDeps": "org.apache.storm:storm-kinesis-uber:1.1.0.5",
+  "mavenDeps": "org.apache.storm:storm-kinesis:1.1.0.5",
   "topologyComponentUISpecification": {
     "fields": [
       {
