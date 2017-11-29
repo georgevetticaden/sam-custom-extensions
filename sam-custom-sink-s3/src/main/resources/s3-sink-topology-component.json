@@ -1,0 +1,53 @@
+{
+  "type": "SINK",
+  "name": "S3",
+  "subType": "S3",
+  "streamingEngine": "STORM",
+  "builtin": false,
+  "transformationClass": "hortonworks.hdf.sam.custom.bolt.s3.S3BoltFluxComponent",
+  "mavenDeps": "hortonworks.storm.aws:storm-s3:0.0.1-SNAPSHOT",
+  "topologyComponentUISpecification": {
+    "fields": [
+      {
+        "uiName": "AWS Access Key Id",
+        "fieldName": "awsAccessKeyId",
+        "isOptional": false,
+        "tooltip": "AWS Access Key Id",
+        "type": "string"
+      },
+      {
+        "uiName": "AWS Access Key Secret",
+        "fieldName": "awsAccessKeySecret",
+        "isOptional": false,
+        "tooltip": "AWS Access Key Secret",
+        "type": "string"
+      },   
+      {
+        "uiName": "AWS Region",
+        "fieldName": "awsRegion",
+        "isOptional": false,
+        "tooltip": "AWS Region",
+        "type": "enumstring",
+        "options": ["GovCloud", "US_EAST_1" ,"US_EAST_2" ,"US_WEST_1", "US_WEST_2", "EU_WEST_1", "EU_WEST_2", "EU_CENTRAL_1", "AP_SOUTH_1", "AP_SOUTHEAST_1", "AP_SOUTHEAST_2", "AP_NORTHEAST_1", "AP_NORTHEAST_2", "SA_EAST_1", "CN_NORTH_1", "CA_CENTRAL_1"],
+        "defaultValue": "US_WEST_2"
+      },         
+      {
+        "uiName": "S3 Bucket",
+        "fieldName": "s3Bucket",
+        "isOptional": false,
+		"tooltip": "S3 Bucket Name",
+        "type": "string"
+      },       
+      {
+        "uiName": "Parallelism",
+        "fieldName": "parallelism",
+        "isOptional": true,
+        "tooltip": "Parallelism hint for S3 Sink",
+        "type": "number",
+        "defaultValue": 1,
+        "min": 1,
+        "hint": "hidden"
+      }
+    ]
+  }
+}
