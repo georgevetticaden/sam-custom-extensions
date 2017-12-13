@@ -1,0 +1,60 @@
+{
+	"streamingEngine": "STORM",
+	"name": "ENRICH-PHOENIX-NEW",
+	"description": "Enriches the input schema with data from Phoenix based on user supplied SQL",
+	"customProcessorImpl": "hortonworks.hdf.sam.custom.processor.enrich.phoenix.PhoenixEnrichmentSecureProcessor",
+	"jarFileName": "sam-custom-processor-0.0.11-jar-with-dependencies.jar",
+	"topologyComponentUISpecification": {
+		"fields": [{
+			"uiName": "Phoenix Zookeeper Connection URL",
+			"fieldName": "zkServerUrl",
+			"isUserInput": true,
+			"tooltip": "Zookeeper server url in the format of $FQDN_ZK_HOST:$ZK_PORT",
+			"isOptional": false,
+			"type": "string",
+			"defaultValue": ""
+		}, {
+			"uiName": "Enrichment SQL",
+			"fieldName": "enrichmentSQL",
+			"isUserInput": true,
+			"tooltip": "SQL to execute for the enriched values",
+			"isOptional": false,
+			"type": "string",
+			"defaultValue": ""
+		}, {
+			"uiName": "Enrichment Output Fields",
+			"fieldName": "enrichedOutputFields",
+			"isUserInput": true,
+			"tooltip": "The output field names to store new enriched values",
+			"isOptional": false,
+			"type": "string",
+			"defaultValue": ""
+		}, {
+			"uiName": "Secure Cluster",
+			"fieldName": "secureCluster",
+			"isUserInput": true,
+			"tooltip": "Check if connecting to a secure HBase/Phoenix Cluster",
+			"isOptional": false,
+			"type": "boolean",
+			"defaultValue": false
+		}, {
+			"uiName": "Kerberos Client Principal",
+			"fieldName": "kerberosClientPrincipal",
+			"isUserInput": true,
+			"tooltip": "The principal uses to connect to secure HBase/PHoenix Cluster. Required if secureCluster is checked",
+			"isOptional": true,
+			"type": "string",
+			"defaultValue": ""
+		}, {
+			"uiName": "Kerberos Key Tab File",
+			"fieldName": "kerberosKeyTabFile",
+			"isUserInput": true,
+			"tooltip": "Kerberos Key Tab File location on each of the worker nodes for thee principal configured",
+			"isOptional": true,
+			"type": "string",
+			"defaultValue": ""
+		}]
+	},
+	"inputSchema": null,
+	"outputSchema": null
+}
