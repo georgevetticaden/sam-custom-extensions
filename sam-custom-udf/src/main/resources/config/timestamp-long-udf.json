@@ -1,0 +1,8 @@
+{
+	"name":"TIMESTAMP_LONG-NEW",
+	"displayName":"TIMESTAMP_LONG-NEW",
+	"description":"Converts a string date time to a Timestamp Long",
+	"type":"FUNCTION",
+	"className":"hortonworks.hdf.sam.custom.udf.time.ConvertToTimestampLong",
+	"builtin":false
+}

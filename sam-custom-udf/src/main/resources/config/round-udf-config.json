@@ -1,0 +1,8 @@
+{
+	"name":"ROUND-NEW",
+	"displayName":"ROUND-NEW",
+	"description":"Rounds a double to integer using Math.Round",
+	"type":"FUNCTION",
+	"className":"hortonworks.hdf.sam.custom.udf.math.Round",
+	"builtin":false
+}

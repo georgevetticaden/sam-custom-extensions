@@ -1,0 +1,8 @@
+{
+	"name":"GET_WEEK-NEW",
+	"displayName":"GET_WEEK-NEW",
+	"description":"For a given date time string, the functions returns the week of the date/time",
+	"type":"FUNCTION",
+	"className":"hortonworks.hdf.sam.custom.udf.time.GetWeek",
+	"builtin":false
+}
