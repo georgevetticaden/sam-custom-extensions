@@ -1,6 +1,6 @@
 {
-	"name":"ROUND-NEW",
-	"displayName":"ROUND-NEW",
+	"name":"ROUND_AUTOCREATED",
+	"displayName":"ROUND_AUTOCREATED",
 	"description":"Rounds a double to integer using Math.Round",
 	"type":"FUNCTION",
 	"className":"hortonworks.hdf.sam.custom.udf.math.Round",

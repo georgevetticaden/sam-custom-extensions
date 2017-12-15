@@ -1,6 +1,6 @@
 {
-	"name":"TIMESTAMP_LONG-NEW",
-	"displayName":"TIMESTAMP_LONG-NEW",
+	"name":"TIMESTAMP_LONG_AUTOCREATED",
+	"displayName":"TIMESTAMP_LONG_AUTOCREATED",
 	"description":"Converts a string date time to a Timestamp Long",
 	"type":"FUNCTION",
 	"className":"hortonworks.hdf.sam.custom.udf.time.ConvertToTimestampLong",

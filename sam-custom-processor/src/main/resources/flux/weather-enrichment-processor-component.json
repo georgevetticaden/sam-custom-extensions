@@ -1,6 +1,6 @@
 {
 	"streamingEngine": "STORM",
-	"name": "ENRICH-WEATHER-NEW",
+	"name": "ENRICH-WEATHER_AUTOCREATED",
 	"description": "Enrichment with normalized weather data required for the model",
 	"customProcessorImpl": "hortonworks.hdf.sam.custom.processor.enrich.weather.WeatherEnrichmentProcessor",
 	"jarFileName": "sam-custom-processor-0.0.11.jar",

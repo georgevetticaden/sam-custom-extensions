@@ -1,6 +1,6 @@
 {
 	"streamingEngine": "STORM",
-	"name": "ENRICH-PHOENIX-NEW",
+	"name": "ENRICH-PHOENIX_AUTOCREATED",
 	"description": "Enriches the input schema with data from Phoenix based on user supplied SQL",
 	"customProcessorImpl": "hortonworks.hdf.sam.custom.processor.enrich.phoenix.PhoenixEnrichmentSecureProcessor",
 	"jarFileName": "sam-custom-processor-0.0.11-jar-with-dependencies.jar",
