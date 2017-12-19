@@ -43,3 +43,5 @@ SELECT STREAM "driverId",
               "route",
               "speedAvg"
 FROM "DRIVER_AVG_SPEED" where "speedAvg" > 80;
+
+
