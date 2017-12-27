@@ -4,7 +4,7 @@
   	<parent>
     	<groupId>hortonworks.hdf.sam.custom</groupId>
     	<artifactId>sam-custom-extensions</artifactId>
-    	<version>3.1.0.0-412</version>
+    	<version>${sam.extensions.version}</version>
   	</parent>
   	<artifactId>sam-custom-sink</artifactId>
   	<name>sam-custom-extensions-sinks</name>
