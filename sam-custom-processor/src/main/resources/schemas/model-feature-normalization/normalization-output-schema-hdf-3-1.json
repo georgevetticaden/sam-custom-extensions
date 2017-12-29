@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Model_Feature_FoggyWeather",
+    "type": "DOUBLE",
+    "optional": false
+  },
+  {
+    "name": "Model_Feature_RainyWeather",
+    "type": "DOUBLE",
+    "optional": false
+  },
+  {
+    "name": "Model_Feature_WindyWeather",
+    "type": "DOUBLE",
+    "optional": false
+  },
+  {
+    "name": "Model_Feature_Certification",
+    "type": "INTEGER",
+    "optional": false
+  },
+  {
+    "name": "Model_Feature_WagePlan",
+    "type": "INTEGER",
+    "optional": false
+  },
+  {
+    "name": "Model_Feature_FatigueByHours",
+    "type": "DOUBLE",
+    "optional": false
+  },
+  {
+    "name": "Model_Feature_FatigueByMiles",
+    "type": "DOUBLE",
+    "optional": false
+  }
+]
