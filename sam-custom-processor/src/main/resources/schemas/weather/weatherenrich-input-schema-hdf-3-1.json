@@ -1,0 +1,17 @@
+[
+  {
+    "name": "driverId",
+    "type": "INTEGER",
+    "optional": false
+  },
+  {
+    "name": "latitude",
+    "type": "DOUBLE",
+    "optional": false
+  },
+  {
+    "name": "longitude",
+    "type": "DOUBLE",
+    "optional": false
+  }
+]
