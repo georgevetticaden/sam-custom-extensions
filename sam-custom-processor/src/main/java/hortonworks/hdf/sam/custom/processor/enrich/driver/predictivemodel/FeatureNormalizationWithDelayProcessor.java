@@ -1,5 +1,6 @@
 package hortonworks.hdf.sam.custom.processor.enrich.driver.predictivemodel;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -59,7 +60,7 @@ public class FeatureNormalizationWithDelayProcessor implements CustomProcessorRu
 		if(config.get(CONFIG_DELAY_TIMEOUT_IN_SEC) != null) 
 			this.delayTimeOut = (Integer)config.get(CONFIG_DELAY_TIMEOUT_IN_SEC);
 		
-		LOG.info("Configured Delay timeout is: " + delayTimeOut);
+		LOG.info("Configured Delay timeout is (new): " + delayTimeOut);
 		
 		LOG.info("Finished Initialzing FeatureNormalization processor");
 		
@@ -91,13 +92,14 @@ public class FeatureNormalizationWithDelayProcessor implements CustomProcessorRu
         
         LOG.info("Normalized Feautres are: " + normalizedFeatures);
         
+        long delayTimeOutMS = delayTimeOut * 1000;
         if(delayTimeOut > 0) {
-        	LOG.info("Sleeping for " + delayTimeOut + " seconds");
-        	try {
-				Thread.sleep(delayTimeOut * 1000);
-			} catch (InterruptedException e) {
-				LOG.error(e.getMessage(), e);
-			}
+        	LOG.info("Waiting for " + delayTimeOut + " seconds");
+        	long startTime = System.currentTimeMillis();
+        	while((System.currentTimeMillis() - startTime)  < delayTimeOutMS) {
+        		//wait and do nothing..
+        	}
+        	LOG.info("Finsihed Waiting in Normalization..");
         }
 		
         //add the new normalized feautres to the builder
