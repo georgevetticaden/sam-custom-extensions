@@ -3,7 +3,7 @@
 	"name": "ENRICH-WEATHER_AUTOCREATED",
 	"description": "Enrichment with normalized weather data required for the model",
 	"customProcessorImpl": "hortonworks.hdf.sam.custom.processor.enrich.weather.WeatherEnrichmentProcessor",
-	"jarFileName": "sam-custom-processor-0.0.11.jar",
+	"jarFileName": "sam-custom-processor.jar",
 	"topologyComponentUISpecification": {
 		"fields": [{
 			"uiName": "Weather Web Service URL",

@@ -1,10 +1,20 @@
 {
 	"streamingEngine": "STORM",
-	"name": "NORMALIZE-MODEL-FEATURES_AUTOCREATED",
-	"description": "Normalize the features of the model before passing it to model",
-	"customProcessorImpl": "hortonworks.hdf.sam.custom.processor.enrich.driver.predictivemodel.FeatureNormalizationProcessor",
-	"jarFileName": "sam-custom-processor-0.0.11a.jar",
-	"topologyComponentUISpecification": null,
+	"name": "NORMALIZE-MODEL-FEATURES_DELAY_AUTOCREATED",
+	"description": "Normalize the features of the model before passing it to model with option to cause latency",
+	"customProcessorImpl": "hortonworks.hdf.sam.custom.processor.enrich.driver.predictivemodel.FeatureNormalizationWithDelayProcessor",
+	"jarFileName": "sam-custom-processor.jar",
+	"topologyComponentUISpecification": {
+			"fields": [{
+				"uiName": "Timeout Delay for Monitoring Use Case (Seconds)",
+				"fieldName": "delayTimeOutSecs",
+				"isUserInput": true,
+				"tooltip": "timeout delay in seconds",
+				"isOptional": true,
+				"type": "number",
+				"defaultValue": 0
+			}]
+	},
 	"inputSchema": null,
 	"outputSchema": {
 		"fields": [{
