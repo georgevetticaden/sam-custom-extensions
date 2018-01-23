@@ -17,8 +17,8 @@
   	
   	
 	<properties>
-		<sam.extensions.version>3.1.0.0-501</sam.extensions.version>
-		<streamline.version>0.6.0.3.1.0.0-501</streamline.version>
+		<sam.extensions.version>3.1.0.0-547</sam.extensions.version>
+		<streamline.version>0.6.0.3.1.0.0-547</streamline.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<junit.version>4.5</junit.version> 
 		<storm.version>1.1.0</storm.version>
