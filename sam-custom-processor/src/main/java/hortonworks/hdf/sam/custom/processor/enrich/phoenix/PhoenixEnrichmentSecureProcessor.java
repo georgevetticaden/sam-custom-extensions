@@ -106,14 +106,14 @@ public class PhoenixEnrichmentSecureProcessor implements CustomProcessorRuntime 
 	 */
 	public List<StreamlineEvent> process(StreamlineEvent event)
 			throws ProcessingException {
-		LOG.info("Event[" + event + "] about to be enriched");
+		LOG.debug("Event[" + event + "] about to be enriched");
 
 		StreamlineEventImpl.Builder builder = StreamlineEventImpl.builder();
 		builder.putAll(event);
 
 		/* Enrich */
 		Map<String, Object> enrichValues = enrich(event);
-		LOG.info("Enriching events[" + event
+		LOG.debug("Enriching events[" + event
 				+ "]  with the following enriched values: " + enrichValues);
 		builder.putAll(enrichValues);
 
@@ -121,7 +121,7 @@ public class PhoenixEnrichmentSecureProcessor implements CustomProcessorRuntime 
 		List<Result> results = new ArrayList<Result>();
 		StreamlineEvent enrichedEvent = builder.dataSourceId(
 				event.getDataSourceId()).build();
-		LOG.info("Enriched StreamLine Event is: " + enrichedEvent);
+		LOG.debug("Enriched StreamLine Event is: " + enrichedEvent);
 
 		List<StreamlineEvent> newEvents = Collections
 				.<StreamlineEvent> singletonList(enrichedEvent);
@@ -148,7 +148,7 @@ public class PhoenixEnrichmentSecureProcessor implements CustomProcessorRuntime 
 		Statement statement = null;
 		try {
 
-			LOG.info("The SQL with substitued fields to be executed is: "
+			LOG.debug("The SQL with substitued fields to be executed is: "
 					+ enrichSQLToExecute);
 
 			statement = phoenixConnection.createStatement();

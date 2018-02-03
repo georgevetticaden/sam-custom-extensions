@@ -70,7 +70,7 @@ public class FeatureNormalizationWithDelayProcessor implements CustomProcessorRu
 	public List<StreamlineEvent> process(StreamlineEvent event)
 			throws ProcessingException {
 		
-		LOG.info("About to do feature normalization event: " + event);
+		LOG.debug("About to do feature normalization event: " + event);
 		
 		
 		StreamlineEventImpl.Builder builder = StreamlineEventImpl.builder();
@@ -90,16 +90,16 @@ public class FeatureNormalizationWithDelayProcessor implements CustomProcessorRu
         String driverMiles = (String) event.get(INPUT_DRIVER_MILES_KEY);
         normalizedFeatures.put(OUTPUT_DRIVER_MILES_NORMALIZED_KEY, normalizeDriverMiles(driverMiles));
         
-        LOG.info("Normalized Feautres are: " + normalizedFeatures);
+        LOG.debug("Normalized Feautres are: " + normalizedFeatures);
         
         long delayTimeOutMS = delayTimeOut * 1000;
         if(delayTimeOut > 0) {
-        	LOG.info("Waiting for " + delayTimeOut + " seconds");
+        	LOG.debug("Waiting for " + delayTimeOut + " seconds");
         	long startTime = System.currentTimeMillis();
         	while((System.currentTimeMillis() - startTime)  < delayTimeOutMS) {
         		//wait and do nothing..
         	}
-        	LOG.info("Finsihed Waiting in Normalization..");
+        	LOG.debug("Finsihed Waiting in Normalization..");
         }
 		
         //add the new normalized feautres to the builder
@@ -110,7 +110,7 @@ public class FeatureNormalizationWithDelayProcessor implements CustomProcessorRu
         
         //create new event
         StreamlineEvent enrichedEvent = builder.dataSourceId(event.getDataSourceId()).build();
-        LOG.info("Enriched StreamLine Event with normalization  is: " + enrichedEvent );
+        LOG.debug("Enriched StreamLine Event with normalization  is: " + enrichedEvent );
         
         List<StreamlineEvent> newEvents= Collections.<StreamlineEvent>singletonList(enrichedEvent);
         return newEvents;  

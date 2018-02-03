@@ -62,7 +62,7 @@ public class WeatherEnrichmentProcessor implements CustomProcessorRuntime {
 	public List<StreamlineEvent> process(StreamlineEvent event)
 			throws ProcessingException {
 		Integer driverId = (Integer) event.get(INPUT_DRIVER_ID_KEY);
-		LOG.info("Driver["+driverId+"] about to be enriched with weather data");
+		LOG.debug("Driver["+driverId+"] about to be enriched with weather data");
 		
 		StreamlineEventImpl.Builder builder = StreamlineEventImpl.builder();
         builder.putAll(event);
@@ -70,15 +70,15 @@ public class WeatherEnrichmentProcessor implements CustomProcessorRuntime {
 		if(driverId != null) {
 			
 			Map<String, Object> enrichedWithWeather = enrich(driverId);
-			LOG.info("Enriching driver["+driverId + "]  with the following enriched weather values: " + enrichedWithWeather);
+			LOG.debug("Enriching driver["+driverId + "]  with the following enriched weather values: " + enrichedWithWeather);
 			builder.putAll(enrichedWithWeather);
 			
 		} else  {
-			LOG.info("Skipping Enrichment because driverId was null..");
+			LOG.debug("Skipping Enrichment because driverId was null..");
 		}
         
         StreamlineEvent enrichedEvent = builder.dataSourceId(event.getDataSourceId()).build();
-        LOG.info("Enriched StreamLine Event with weather is: " + enrichedEvent );
+        LOG.debug("Enriched StreamLine Event with weather is: " + enrichedEvent );
         List<StreamlineEvent> newEvents= Collections.<StreamlineEvent>singletonList(enrichedEvent);
         return newEvents; 
 	}

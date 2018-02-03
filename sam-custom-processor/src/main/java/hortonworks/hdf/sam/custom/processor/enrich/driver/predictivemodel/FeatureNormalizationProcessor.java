@@ -60,7 +60,7 @@ public class FeatureNormalizationProcessor implements CustomProcessorRuntime {
 	public List<StreamlineEvent> process(StreamlineEvent event)
 			throws ProcessingException {
 		
-		LOG.info("About to do feature normalization event: " + event);
+		LOG.debug("About to do feature normalization event: " + event);
 		
 		
 		StreamlineEventImpl.Builder builder = StreamlineEventImpl.builder();
@@ -80,7 +80,7 @@ public class FeatureNormalizationProcessor implements CustomProcessorRuntime {
         String driverMiles = (String) event.get(INPUT_DRIVER_MILES_KEY);
         normalizedFeatures.put(OUTPUT_DRIVER_MILES_NORMALIZED_KEY, normalizeDriverMiles(driverMiles));
         
-        LOG.info("Normalized Feautres are: " + normalizedFeatures);
+        LOG.debug("Normalized Feautres are: " + normalizedFeatures);
 		
         //add the new normalized feautres to the builder
         builder.putAll(normalizedFeatures);
@@ -90,7 +90,7 @@ public class FeatureNormalizationProcessor implements CustomProcessorRuntime {
         
         //create new event
         StreamlineEvent enrichedEvent = builder.dataSourceId(event.getDataSourceId()).build();
-        LOG.info("Enriched StreamLine Event with normalization  is: " + enrichedEvent );
+        LOG.debug("Enriched StreamLine Event with normalization  is: " + enrichedEvent );
         
         List<StreamlineEvent> newEvents= Collections.<StreamlineEvent>singletonList(enrichedEvent);
         return newEvents;  

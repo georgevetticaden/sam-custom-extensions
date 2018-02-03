@@ -48,24 +48,24 @@ public class DriverEnrichmentStaticProcessor implements CustomProcessorRuntime {
 	public List<StreamlineEvent> process(StreamlineEvent event)
 			throws ProcessingException {
 		Integer driverId = (Integer) event.get(DRIVER_ID_KEY);
-		LOG.info("Driver["+driverId+"] about to be enriched");
+		LOG.debug("Driver["+driverId+"] about to be enriched");
 		
 		StreamlineEventImpl.Builder builder = StreamlineEventImpl.builder();
         builder.putAll(event);
         
 		if(driverId != null) {
 			Map<String, Object> enrichedDriverInfo = enrich(driverId);
-			LOG.info("Enriching driver["+driverId + "]  with the following enriched values: " + enrichedDriverInfo);
+			LOG.debug("Enriching driver["+driverId + "]  with the following enriched values: " + enrichedDriverInfo);
 			//event.addFieldsAndValues(enrichedDriverInfo);
 			builder.putAll(enrichedDriverInfo);
 		} else  {
-			LOG.info("Skipping Enrichment because driverId was null..");
+			LOG.debug("Skipping Enrichment because driverId was null..");
 		}
 
 			
         List<Result> results = new ArrayList<Result>();
         StreamlineEvent enrichedEvent = builder.dataSourceId(event.getDataSourceId()).build();
-        LOG.info("Enriched StreamLine Event is: " + enrichedEvent );
+        LOG.debug("Enriched StreamLine Event is: " + enrichedEvent );
         List<StreamlineEvent> newEvents= Collections.<StreamlineEvent>singletonList(enrichedEvent);
         return newEvents;
 	}
