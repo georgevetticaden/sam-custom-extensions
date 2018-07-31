@@ -11,7 +11,8 @@
   	<name>sam-custom-extensions-processors</name>
   
 	<properties>
-		<phoenix.version>4.7.0.2.6.0.12-1</phoenix.version>
+		<!-- Can't use HDP version becasuse of some zip error when running mvn assembly:assembly -->
+		<phoenix.version>5.0.0-HBase-2.0</phoenix.version>
 	</properties>  
 	
  	<dependencies>
@@ -64,6 +65,7 @@
 		        <descriptorRefs>
 		          <descriptorRef>jar-with-dependencies</descriptorRef>
 		        </descriptorRefs>
+		        <tarLongFileMode>posix</tarLongFileMode>
 		      </configuration>
 		    </plugin>	            
         </plugins>
